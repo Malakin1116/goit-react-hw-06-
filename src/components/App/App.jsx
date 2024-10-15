@@ -106,22 +106,21 @@
 //   );
 // }
 
-import { useSelector } from "react-redux";
-import LangSwitcher from "../HM6/LangSwitcher";
-import Balance from "../HM6/Balance";
-
-import { selectLang } from "../../redux/localeSlice";
+import ContactForm from "./ContactForm/ContactForm";
+import ContactList from "./ContactList/ContactList";
+import SearchBox from "./SearchBox/SearchBox";
 
 export default function App() {
-  const lang = useSelector(selectLang);
-
   return (
     <div>
-      <h1>State management with Redux</h1>
-      <Balance />
-      <hr />
-      <LangSwitcher />
-      <p>Selected lang: {lang}</p>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <SearchBox />
+      <ContactList />
     </div>
   );
 }
+
+/*<ContactForm onAdd={addContact}  */
+//<SearchBox value={filter} onFilter={setFilter} />
+//<ContactList contacts={visibleContacts} onDelete={deleteContact} />

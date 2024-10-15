@@ -69,12 +69,12 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 
-import balanceReducer from "./balanceSlice";
-import localeReducer from "./localeSlice";
+import contactReducer from "./contactsSlice";
+import filterReducer from "./filtersSlice";
 
 export const store = configureStore({
   reducer: {
-    balance: balanceReducer,
-    locale: localeReducer,
+    contact: contactReducer,
+    filters: filterReducer,
   },
 });
