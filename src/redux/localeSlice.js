@@ -24,7 +24,7 @@ const slice = createSlice({
   initialState: {
     lang: "uk",
   },
-  redusers: {
+  reducers: {
     changeLang: (state, action) => {
       state.lang = action.payload;
     },
