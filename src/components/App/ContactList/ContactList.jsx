@@ -1,32 +1,29 @@
-// import css from "./ContactList.module.css";
-// import Contact from "../ContactList/Contact/Contact";
-
-// export default function ContactList({ contacts, onDelete }) {
-//   return (
-//     <ul className={css.ul}>
-//       {contacts.map((contact) => (
-//         <li key={contact.id}>
-//           <Contact data={contact} onDelete={onDelete} />
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// }
-
 import css from "./ContactList.module.css";
-import Contact from "../ContactList/Contact/Contact";
-
-import { userData } from "../../../redux/contactsSlice";
+import Contact from "./Contact/Contact";
 import { useSelector } from "react-redux";
 
 export default function ContactList({ onDelete }) {
-  const userdata = useSelector(userData);
+  const contacts = useSelector((state) => state.contacts.items);
+  const filters = useSelector((state) => state.filters.name);
+
+  const allUsersWithFiltred =
+    contacts &&
+    contacts.filter((value) =>
+      value.name
+        ?.toLocaleLowerCase()
+        .includes(filters?.toLocaleLowerCase() || "")
+    );
 
   return (
     <ul className={css.ul}>
-      {userdata.map((user) => (
+      {allUsersWithFiltred.map((user) => (
         <li key={user.id}>
-          <Contact data={user} onDelete={onDelete} />
+          <Contact
+            id={user.id}
+            name={user.name}
+            number={user.number}
+            onDelete={onDelete}
+          />
         </li>
       ))}
     </ul>

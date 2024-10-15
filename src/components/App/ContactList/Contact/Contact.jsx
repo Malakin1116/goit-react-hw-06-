@@ -1,25 +1,56 @@
+// import { CiPhone } from "react-icons/ci";
+// import { GrAccessibility } from "react-icons/gr";
+
+// import css from "./Contact.module.css"
+
+// export default function Contact({ data: { id, name, number }, onDelete }) {
+
+//     return (
+//       <div className={css.container}>
+//         <div className={css.divLeft}>
+//           <p className={css.text}>
+//           <GrAccessibility className={css.icon} />
+//           {name}
+//           </p>
+//           <p className={css.text}>
+//             <CiPhone className={css.icon} />
+//             {number}
+//           </p>
+//         </div>
+//         <button className={css.button} onClick={() => onDelete(id)}>
+//           Delete
+//         </button>
+//       </div>
+//     );
+
+//   }
+
 import { CiPhone } from "react-icons/ci";
 import { GrAccessibility } from "react-icons/gr";
+import css from "./Contact.module.css";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../../../redux/contactsSlice";
 
-import css from "./Contact.module.css"
+export default function Contact({ name, number, id }) {
+  const dispatch = useDispatch();
 
-export default function Contact({ data: { id, name, number }, onDelete }) {
-    
-    return (
-      <div className={css.container}>
-        <div className={css.divLeft}>
-          <p className={css.text}>
+  const handleDelete = () => dispatch(deleteContact(id));
+
+  return (
+    <div className={css.container}>
+      <div className={css.divLeft}>
+        <p className={css.text}>
           <GrAccessibility className={css.icon} />
           {name}
-          </p>
-          <p className={css.text}>
-            <CiPhone className={css.icon} />
-            {number}
-          </p>
-        </div>
-        <button className={css.button} onClick={() => onDelete(id)}>
-          Delete
-        </button>
+        </p>
+        <p className={css.text}>
+          <CiPhone className={css.icon} />
+          {number}
+        </p>
       </div>
-    );
-  }
+      <button className={css.button} onClick={handleDelete}>
+        Delete
+      </button>
+    </div>
+  );
+}
