@@ -3,7 +3,7 @@ import Contact from "./Contact/Contact";
 import { useSelector } from "react-redux";
 import { selectFilter } from "../../../redux/filtersSlice";
 
-export default function ContactList({ onDelete }) {
+export default function ContactList() {
   const contacts = useSelector((state) => state.contacts.items);
   const filterValue = useSelector(selectFilter);
 
@@ -17,12 +17,7 @@ export default function ContactList({ onDelete }) {
     <ul className={css.ul}>
       {filteredContacts.map((user) => (
         <li key={user.id}>
-          <Contact
-            id={user.id}
-            name={user.name}
-            number={user.number}
-            onDelete={onDelete}
-          />
+          <Contact id={user.id} name={user.name} number={user.number} />
         </li>
       ))}
     </ul>
